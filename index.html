@@ -20,8 +20,8 @@
   --maroon: #5E2636;
   --sage: #7E8E6E;
   --text: #3D2E2A;
-  --text-light: #7A6B63;
-  --text-muted: #A89B92;
+  --text-light: #5C4D45;
+  --text-muted: #7A6B63;
   --paper-shadow: rgba(60, 40, 30, 0.15);
   --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
   --font-body: 'Jost', 'Helvetica Neue', Arial, sans-serif;
@@ -55,7 +55,7 @@ body {
   background: var(--cream-deep);
   color: var(--text);
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 400;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   padding: 0 !important;
@@ -214,7 +214,7 @@ body {
   flex-direction: column;
   align-items: center;
   z-index: 30;
-  padding: 0 14px 16px;
+  padding: 0 14px calc(16px + env(safe-area-inset-bottom, 0px));
   gap: 8px;
   pointer-events: none;
 }
@@ -223,9 +223,9 @@ body {
 .page-indicator {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   letter-spacing: 0.2em;
-  color: var(--text-muted);
+  color: var(--text-light);
 }
 
 .page-nav {
@@ -240,19 +240,19 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(250, 247, 242, 0.6);
+  background: rgba(196, 162, 101, 0.15);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border: 0.5px solid var(--gold-light);
-  padding: 10px 12px;
+  border: 1px solid var(--gold);
+  padding: 10px 16px;
   border-radius: 100px;
   cursor: pointer;
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.52rem;
+  font-weight: 500;
+  font-size: 0.6rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--maroon);
   transition: all 0.3s ease;
   min-height: 44px;
   white-space: nowrap;
@@ -295,7 +295,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 6px 20px 16px;
+  padding: 6px 20px calc(16px + env(safe-area-inset-bottom, 0px));
   flex-shrink: 0;
 }
 
@@ -351,7 +351,7 @@ body {
 
 .cover-invitation-text {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(0.85rem, 2.3vw, 1rem);
   color: var(--text-light);
@@ -497,7 +497,7 @@ body {
 }
 .evt-desc {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(0.75rem, 2vw, 0.85rem);
   color: var(--text-light);
@@ -611,7 +611,7 @@ body {
 }
 .closing-line {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(0.9rem, 2.5vw, 1.05rem);
   color: var(--text-light);
