@@ -239,8 +239,10 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--maroon);
-  border: 1.5px solid var(--maroon);
+  background: rgba(94, 38, 54, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(94, 38, 54, 0.35);
   padding: 10px 18px;
   border-radius: 100px;
   cursor: pointer;
@@ -249,14 +251,14 @@ body {
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #FAF7F2;
+  color: var(--maroon);
   transition: all 0.3s ease;
   min-height: 44px;
   white-space: nowrap;
 }
 .nav-btn:hover, .nav-btn:focus-visible {
-  background: #4A1E2C;
-  border-color: #4A1E2C;
+  background: rgba(94, 38, 54, 0.28);
+  border-color: rgba(94, 38, 54, 0.45);
   outline: none;
 }
 .nav-btn:active { transform: scale(0.97); }
