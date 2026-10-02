@@ -14,14 +14,15 @@
   --ivory: #FAF7F2;
   --cream: #EDE8DF;
   --cream-deep: #E4DDD2;
-  --gold: #C4A265;
+  --gold: #A8873E;
+  --gold-dark: #8B6F2E;
   --gold-light: #D9C9A3;
   --gold-faint: #E8DCC6;
   --maroon: #5E2636;
   --sage: #7E8E6E;
-  --text: #3D2E2A;
-  --text-light: #7A6B63;
-  --text-muted: #A89B92;
+  --text: #2C1F1A;
+  --text-light: #3D2E2A;
+  --text-muted: #5C4D45;
   --paper-shadow: rgba(60, 40, 30, 0.15);
   --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
   --font-body: 'Jost', 'Helvetica Neue', Arial, sans-serif;
@@ -31,7 +32,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --ivory: #FAF7F2; --cream: #EDE8DF; --cream-deep: #E4DDD2;
-    --gold: #C4A265; --gold-light: #D9C9A3; --gold-faint: #E8DCC6;
+    --gold: #A8873E; --gold-dark: #8B6F2E; --gold-light: #D9C9A3; --gold-faint: #E8DCC6;
     --maroon: #5E2636; --sage: #7E8E6E; --text: #3D2E2A;
     --text-light: #7A6B63; --text-muted: #A89B92;
     --paper-shadow: rgba(60, 40, 30, 0.15);
@@ -40,7 +41,7 @@
 }
 :root[data-theme="dark"] {
   --ivory: #FAF7F2; --cream: #EDE8DF; --cream-deep: #E4DDD2;
-  --gold: #C4A265; --gold-light: #D9C9A3; --gold-faint: #E8DCC6;
+  --gold: #A8873E; --gold-dark: #8B6F2E; --gold-light: #D9C9A3; --gold-faint: #E8DCC6;
   --maroon: #5E2636; --sage: #7E8E6E; --text: #3D2E2A;
   --text-light: #7A6B63; --text-muted: #A89B92;
   --paper-shadow: rgba(60, 40, 30, 0.15);
@@ -55,7 +56,7 @@ body {
   background: var(--cream-deep);
   color: var(--text);
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 400;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   padding: 0 !important;
@@ -208,24 +209,22 @@ body {
 
 /* ==================== NAVIGATION ==================== */
 .page-footer {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 30;
-  padding: 0 14px 16px;
+  padding: 20px 14px calc(16px + env(safe-area-inset-bottom, 0px));
   gap: 8px;
-  pointer-events: none;
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 /* Page indicator */
 .page-indicator {
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.55rem;
+  font-weight: 500;
+  font-size: 0.7rem;
   letter-spacing: 0.2em;
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 .page-nav {
@@ -240,26 +239,24 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(250, 247, 242, 0.6);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 0.5px solid var(--gold-light);
-  padding: 10px 12px;
+  background: var(--maroon);
+  border: 1.5px solid var(--maroon);
+  padding: 10px 18px;
   border-radius: 100px;
   cursor: pointer;
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.52rem;
+  font-weight: 500;
+  font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #FAF7F2;
   transition: all 0.3s ease;
   min-height: 44px;
   white-space: nowrap;
 }
 .nav-btn:hover, .nav-btn:focus-visible {
-  background: rgba(196, 162, 101, 0.1);
-  border-color: var(--gold);
+  background: #4A1E2C;
+  border-color: #4A1E2C;
   outline: none;
 }
 .nav-btn:active { transform: scale(0.97); }
@@ -295,7 +292,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 6px 20px 16px;
+  padding: 6px 20px calc(16px + env(safe-area-inset-bottom, 0px));
   flex-shrink: 0;
 }
 
@@ -309,7 +306,7 @@ body {
 
 .cover-names {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(2rem, 6.5vw, 2.8rem);
   color: var(--maroon);
   letter-spacing: 0.04em;
@@ -351,9 +348,9 @@ body {
 
 .cover-invitation-text {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-style: italic;
-  font-size: clamp(0.85rem, 2.3vw, 1rem);
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
   color: var(--text-light);
   line-height: 1.65;
   max-width: 280px;
@@ -362,10 +359,10 @@ body {
 
 .cover-date {
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.7rem;
+  font-weight: 500;
+  font-size: 0.75rem;
   letter-spacing: 0.25em;
-  color: var(--gold);
+  color: var(--gold-dark);
   text-transform: uppercase;
 }
 
@@ -374,7 +371,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 24px 20px 78px;
+  padding: 24px 20px 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -387,16 +384,16 @@ body {
 }
 .page-2-header .eyebrow {
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.55rem;
+  font-weight: 500;
+  font-size: 0.6rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-dark);
   margin-bottom: 6px;
 }
 .page-2-header h2 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.4rem, 4.5vw, 1.9rem);
   color: var(--maroon);
   letter-spacing: 0.04em;
@@ -413,11 +410,9 @@ body {
 
 /* Events on page 2 — editorial, each unique */
 .p2-events {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  min-height: 0;
 }
 
 /* Event: Haldi — large image, text below */
@@ -458,48 +453,48 @@ body {
   display: block;
 }
 
-/* Event: Devpoojan — centered, serene */
+/* Event: Devpoojan — image left, text right */
 .evt-devpoojan {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 14px;
+  align-items: center;
 }
 .evt-devpoojan .evt-img {
-  width: 80%;
-  margin: 0 auto;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  aspect-ratio: 4 / 5;
+  border-radius: 3px;
   overflow: hidden;
-  border: 0.5px solid var(--gold-faint);
 }
 .evt-devpoojan .evt-img img {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
 }
-.evt-devpoojan .evt-meta { padding-top: 10px; }
+.evt-devpoojan .evt-meta { text-align: left; }
 
 /* Event meta shared styles */
 .evt-date {
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.55rem;
+  font-weight: 500;
+  font-size: 0.6rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-dark);
   margin-bottom: 2px;
 }
 .evt-title {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 3.2vw, 1.35rem);
   color: var(--maroon);
   letter-spacing: 0.05em;
   margin-bottom: 3px;
 }
 .evt-desc {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
-  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  font-size: clamp(0.8rem, 2.2vw, 0.9rem);
   color: var(--text-light);
   line-height: 1.5;
 }
@@ -518,7 +513,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 24px 20px 78px;
+  padding: 24px 20px 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -531,16 +526,16 @@ body {
 }
 .page-3-header .eyebrow {
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.55rem;
+  font-weight: 500;
+  font-size: 0.6rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-dark);
   margin-bottom: 6px;
 }
 .page-3-header h2 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.4rem, 4.5vw, 1.9rem);
   color: var(--maroon);
   letter-spacing: 0.04em;
@@ -570,9 +565,9 @@ body {
   display: block;
 }
 .evt-wedding .evt-meta { padding-top: 12px; }
-.evt-wedding .evt-date { font-size: 0.6rem; color: var(--maroon); }
+.evt-wedding .evt-date { font-size: 0.65rem; font-weight: 500; color: var(--gold-dark); }
 .evt-wedding .evt-title {
-  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  font-size: clamp(1.25rem, 3.5vw, 1.6rem);
   position: relative;
 }
 .evt-wedding .evt-title::after {
@@ -611,22 +606,22 @@ body {
 }
 .closing-line {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-style: italic;
-  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   color: var(--text-light);
   margin-bottom: 10px;
 }
 .closing-names {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+  font-weight: 500;
+  font-size: clamp(0.85rem, 2.2vw, 1rem);
   color: var(--maroon);
   line-height: 1.6;
 }
 .closing-names .with-love {
   display: block;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: 0.85em;
   color: var(--text-light);
@@ -636,6 +631,42 @@ body {
   margin-top: 10px;
 }
 .closing-ornament svg { width: 36px; height: 10px; opacity: 0.2; color: var(--gold); }
+
+/* ==================== SCROLL HINT ==================== */
+.scroll-hint {
+  position: absolute;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  z-index: 35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.scroll-hint.visible {
+  opacity: 1;
+}
+.scroll-hint-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.scroll-hint-arrow {
+  font-size: 0.85rem;
+  color: var(--gold);
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
 
 /* ==================== MUSIC CONTROL ==================== */
 .music-toggle {
@@ -729,7 +760,6 @@ body {
   .p2-events { gap: 8px; }
   .p3-events { gap: 8px; }
   .evt-haldi .evt-img { aspect-ratio: 2 / 1; }
-  .evt-devpoojan .evt-img { width: 65%; }
 }
 </style>
 </head>
@@ -785,16 +815,21 @@ body {
         <div class="p3-events" id="p3Events"></div>
 
         <div class="closing" id="closingSection"></div>
+
+        <div class="page-footer">
+          <div class="page-indicator">03 / 03</div>
+          <nav class="page-nav">
+            <button class="nav-btn" id="backBtn3" aria-label="Go back to previous page">
+              <span class="arrow arrow-left">←</span> Back
+            </button>
+            <button class="nav-btn hidden"></button>
+          </nav>
+        </div>
       </div>
 
-      <div class="page-footer">
-        <div class="page-indicator">03 / 03</div>
-        <nav class="page-nav">
-          <button class="nav-btn" id="backBtn3" aria-label="Go back to previous page">
-            <span class="arrow arrow-left">←</span> Back
-          </button>
-          <button class="nav-btn hidden"></button>
-        </nav>
+      <div class="scroll-hint" data-for="page3">
+        <span class="scroll-hint-text">Scroll down</span>
+        <span class="scroll-hint-arrow">↓</span>
       </div>
     </div>
 
@@ -814,18 +849,23 @@ body {
         </header>
 
         <div class="p2-events" id="p2Events"></div>
+
+        <div class="page-footer">
+          <div class="page-indicator">02 / 03</div>
+          <nav class="page-nav">
+            <button class="nav-btn" id="backBtn2" aria-label="Go back to cover">
+              <span class="arrow arrow-left">←</span> Back
+            </button>
+            <button class="nav-btn" id="nextBtn2" aria-label="Turn to next page">
+              Turn the Leaf <span class="arrow arrow-right">→</span>
+            </button>
+          </nav>
+        </div>
       </div>
 
-      <div class="page-footer">
-        <div class="page-indicator">02 / 03</div>
-        <nav class="page-nav">
-          <button class="nav-btn" id="backBtn2" aria-label="Go back to cover">
-            <span class="arrow arrow-left">←</span> Back
-          </button>
-          <button class="nav-btn" id="nextBtn2" aria-label="Turn to next page">
-            Turn the Leaf <span class="arrow arrow-right">→</span>
-          </button>
-        </nav>
+      <div class="scroll-hint" data-for="page2">
+        <span class="scroll-hint-text">Scroll down</span>
+        <span class="scroll-hint-arrow">↓</span>
       </div>
     </div>
 
@@ -1192,8 +1232,42 @@ document.getElementById('book').addEventListener('touchend', (e) => {
   }
 }, { passive: true });
 
+// ==================== SCROLL HINTS ====================
+function initScrollHints() {
+  const pages = [
+    { content: document.querySelector('.page-2-content'), hint: document.querySelector('.scroll-hint[data-for="page2"]') },
+    { content: document.querySelector('.page-3-content'), hint: document.querySelector('.scroll-hint[data-for="page3"]') }
+  ];
+
+  pages.forEach(({ content, hint }) => {
+    if (!content || !hint) return;
+
+    function checkScroll() {
+      const isScrollable = content.scrollHeight > content.clientHeight + 10;
+      const isNearBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 30;
+      if (isScrollable && !isNearBottom) {
+        hint.classList.add('visible');
+      } else {
+        hint.classList.remove('visible');
+      }
+    }
+
+    content.addEventListener('scroll', checkScroll, { passive: true });
+
+    // Check whenever a page turn completes (content may now be visible)
+    const observer = new MutationObserver(() => {
+      setTimeout(checkScroll, 100);
+    });
+    observer.observe(content.closest('.page'), { attributes: true, attributeFilter: ['class'] });
+
+    // Initial check after a short delay (content populated dynamically)
+    setTimeout(checkScroll, 500);
+  });
+}
+
 // ==================== INIT ====================
 populate();
+initScrollHints();
 </script>
 
 </body>
