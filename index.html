@@ -20,8 +20,8 @@
   --maroon: #5E2636;
   --sage: #7E8E6E;
   --text: #3D2E2A;
-  --text-light: #5C4D45;
-  --text-muted: #7A6B63;
+  --text-light: #4A3D36;
+  --text-muted: #6B5D55;
   --paper-shadow: rgba(60, 40, 30, 0.15);
   --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
   --font-body: 'Jost', 'Helvetica Neue', Arial, sans-serif;
@@ -208,15 +208,12 @@ body {
 
 /* ==================== NAVIGATION ==================== */
 .page-footer {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 30;
-  padding: 0 14px calc(16px + env(safe-area-inset-bottom, 0px));
+  padding: 20px 14px calc(16px + env(safe-area-inset-bottom, 0px));
   gap: 8px;
-  pointer-events: none;
+  flex-shrink: 0;
 }
 
 /* Page indicator */
@@ -309,7 +306,7 @@ body {
 
 .cover-names {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(2rem, 6.5vw, 2.8rem);
   color: var(--maroon);
   letter-spacing: 0.04em;
@@ -374,7 +371,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 24px 20px 78px;
+  padding: 24px 20px 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -396,7 +393,7 @@ body {
 }
 .page-2-header h2 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(1.4rem, 4.5vw, 1.9rem);
   color: var(--maroon);
   letter-spacing: 0.04em;
@@ -518,7 +515,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 24px 20px 78px;
+  padding: 24px 20px 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -540,7 +537,7 @@ body {
 }
 .page-3-header h2 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(1.4rem, 4.5vw, 1.9rem);
   color: var(--maroon);
   letter-spacing: 0.04em;
@@ -626,7 +623,7 @@ body {
 }
 .closing-names .with-love {
   display: block;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: 0.85em;
   color: var(--text-light);
@@ -636,6 +633,42 @@ body {
   margin-top: 10px;
 }
 .closing-ornament svg { width: 36px; height: 10px; opacity: 0.2; color: var(--gold); }
+
+/* ==================== SCROLL HINT ==================== */
+.scroll-hint {
+  position: absolute;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  z-index: 35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.scroll-hint.visible {
+  opacity: 1;
+}
+.scroll-hint-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.scroll-hint-arrow {
+  font-size: 0.85rem;
+  color: var(--gold);
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
 
 /* ==================== MUSIC CONTROL ==================== */
 .music-toggle {
@@ -785,16 +818,21 @@ body {
         <div class="p3-events" id="p3Events"></div>
 
         <div class="closing" id="closingSection"></div>
+
+        <div class="page-footer">
+          <div class="page-indicator">03 / 03</div>
+          <nav class="page-nav">
+            <button class="nav-btn" id="backBtn3" aria-label="Go back to previous page">
+              <span class="arrow arrow-left">←</span> Back
+            </button>
+            <button class="nav-btn hidden"></button>
+          </nav>
+        </div>
       </div>
 
-      <div class="page-footer">
-        <div class="page-indicator">03 / 03</div>
-        <nav class="page-nav">
-          <button class="nav-btn" id="backBtn3" aria-label="Go back to previous page">
-            <span class="arrow arrow-left">←</span> Back
-          </button>
-          <button class="nav-btn hidden"></button>
-        </nav>
+      <div class="scroll-hint" data-for="page3">
+        <span class="scroll-hint-text">Scroll down</span>
+        <span class="scroll-hint-arrow">↓</span>
       </div>
     </div>
 
@@ -814,18 +852,23 @@ body {
         </header>
 
         <div class="p2-events" id="p2Events"></div>
+
+        <div class="page-footer">
+          <div class="page-indicator">02 / 03</div>
+          <nav class="page-nav">
+            <button class="nav-btn" id="backBtn2" aria-label="Go back to cover">
+              <span class="arrow arrow-left">←</span> Back
+            </button>
+            <button class="nav-btn" id="nextBtn2" aria-label="Turn to next page">
+              Turn the Leaf <span class="arrow arrow-right">→</span>
+            </button>
+          </nav>
+        </div>
       </div>
 
-      <div class="page-footer">
-        <div class="page-indicator">02 / 03</div>
-        <nav class="page-nav">
-          <button class="nav-btn" id="backBtn2" aria-label="Go back to cover">
-            <span class="arrow arrow-left">←</span> Back
-          </button>
-          <button class="nav-btn" id="nextBtn2" aria-label="Turn to next page">
-            Turn the Leaf <span class="arrow arrow-right">→</span>
-          </button>
-        </nav>
+      <div class="scroll-hint" data-for="page2">
+        <span class="scroll-hint-text">Scroll down</span>
+        <span class="scroll-hint-arrow">↓</span>
       </div>
     </div>
 
@@ -1192,8 +1235,42 @@ document.getElementById('book').addEventListener('touchend', (e) => {
   }
 }, { passive: true });
 
+// ==================== SCROLL HINTS ====================
+function initScrollHints() {
+  const pages = [
+    { content: document.querySelector('.page-2-content'), hint: document.querySelector('.scroll-hint[data-for="page2"]') },
+    { content: document.querySelector('.page-3-content'), hint: document.querySelector('.scroll-hint[data-for="page3"]') }
+  ];
+
+  pages.forEach(({ content, hint }) => {
+    if (!content || !hint) return;
+
+    function checkScroll() {
+      const isScrollable = content.scrollHeight > content.clientHeight + 10;
+      const isNearBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 30;
+      if (isScrollable && !isNearBottom) {
+        hint.classList.add('visible');
+      } else {
+        hint.classList.remove('visible');
+      }
+    }
+
+    content.addEventListener('scroll', checkScroll, { passive: true });
+
+    // Check whenever a page turn completes (content may now be visible)
+    const observer = new MutationObserver(() => {
+      setTimeout(checkScroll, 100);
+    });
+    observer.observe(content.closest('.page'), { attributes: true, attributeFilter: ['class'] });
+
+    // Initial check after a short delay (content populated dynamically)
+    setTimeout(checkScroll, 500);
+  });
+}
+
 // ==================== INIT ====================
 populate();
+initScrollHints();
 </script>
 
 </body>
