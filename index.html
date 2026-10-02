@@ -1292,9 +1292,9 @@ const weddingData = {
     },
     {
       label: "Wedding",
-      name: "Rajgir",
-      location: "Nalanda, Bihar",
-      mapsQuery: "Rajgir,+Nalanda,+Bihar,+India"
+      name: "Hotel Nalanda Regency",
+      location: "Rajgir, Bihar 803116",
+      mapsURL: "https://www.google.com/maps?gs_lcrp=EgZjaHJvbWUqBggAECMYJzIGCAAQIxgnMgYIARBFGDkyBggCECMYJzINCAMQABiSAxiABBiKBTINCAQQABiSAxiABBiKBTIMCAUQABhDGIAEGIoFMgwIBhAAGEMYgAQYigUyDQgHEAAYgwEYsQMYgAQyEAgIEAAYgwEYsQMYgAQYigUyBwgJEAAYjwLSAQgxODk0ajBqN6gCALACAA&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KWOZi9L07_I5Ma_cTHnqmJ6-&daddr=Rajgir,+Bihar+803116"
     }
   ],
 
@@ -1391,7 +1391,7 @@ function populate() {
   const mapIcon = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>`;
   let venueHTML = `<p class="venue-section-title">Venues</p><div class="venue-cards">`;
   d.venues.forEach(v => {
-    const mapsURL = `https://www.google.com/maps/dir/?api=1&destination=${v.mapsQuery}`;
+    const mapsURL = v.mapsURL || `https://www.google.com/maps/dir/?api=1&destination=${v.mapsQuery}`;
     venueHTML += `
       <div class="venue-card">
         <p class="venue-label">${v.label}</p>
@@ -1452,7 +1452,7 @@ const audioAssets = {
 const audioState = {
   musicEnabled: false,
   musicInitialized: false,
-  musicVolume: 0.02,
+  musicVolume: 0.2,
   pageTurnVolume: 0.25
 };
 
