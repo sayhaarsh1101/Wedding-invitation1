@@ -694,6 +694,136 @@ body {
 }
 .closing-ornament svg { width: 36px; height: 10px; opacity: 0.2; color: var(--gold); }
 
+/* ==================== VENUE SECTION ==================== */
+.venue-section {
+  text-align: center;
+  padding-top: 8px;
+}
+.venue-section-title {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 12px;
+}
+.venue-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.venue-card {
+  padding: 14px 16px;
+  border: 0.5px solid var(--gold-faint);
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(168,135,62,0.03) 0%, rgba(250,247,242,0.5) 100%);
+  text-align: center;
+}
+.venue-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 3px;
+}
+.venue-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  color: var(--maroon);
+  margin-bottom: 2px;
+}
+.venue-location {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+.venue-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 0.5px solid var(--gold-faint);
+  background: linear-gradient(
+    135deg,
+    rgba(168, 135, 62, 0.08) 0%,
+    rgba(168, 135, 62, 0.04) 50%,
+    rgba(168, 135, 62, 0.1) 100%
+  );
+  transition: all 0.3s ease;
+}
+.venue-map-btn:hover, .venue-map-btn:active {
+  background: rgba(168, 135, 62, 0.12);
+  border-color: var(--gold-light);
+}
+.venue-map-btn svg {
+  width: 12px;
+  height: 12px;
+  fill: var(--gold-dark);
+  flex-shrink: 0;
+}
+
+/* ==================== COUNTDOWN TIMER ==================== */
+.countdown-section {
+  text-align: center;
+  padding: 16px 0 4px;
+}
+.countdown-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 10px;
+}
+.countdown-units {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 52px;
+  padding: 8px 6px;
+  border: 0.5px solid var(--gold-faint);
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(168,135,62,0.04) 0%, rgba(250,247,242,0.3) 100%);
+}
+.countdown-value {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  color: var(--maroon);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.countdown-suffix {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-top: 3px;
+}
+
 /* ==================== SCROLL HINT ==================== */
 .scroll-hint {
   position: absolute;
@@ -960,6 +1090,10 @@ body {
 
         <div class="p3-events" id="p3Events"></div>
 
+        <div class="venue-section" id="venueSection"></div>
+
+        <div class="countdown-section" id="countdownSection"></div>
+
         <div class="closing" id="closingSection"></div>
 
         <div class="page-footer">
@@ -1149,6 +1283,21 @@ const weddingData = {
     }
   ],
 
+  venues: [
+    {
+      label: "Haldi · Mehendi · Sangeet · Devpoojan · Reception",
+      name: "Jhajha",
+      location: "Bihar",
+      mapsQuery: "Jhajha,+Bihar,+India"
+    },
+    {
+      label: "Wedding",
+      name: "Rajgir",
+      location: "Nalanda, Bihar",
+      mapsQuery: "Rajgir,+Nalanda,+Bihar,+India"
+    }
+  ],
+
   closingMessage: "And so begins our forever.",
   closingSignoff: "With love,"
 };
@@ -1237,6 +1386,51 @@ function populate() {
       </div>
     </div>`;
 
+  // Venues
+  const venueSection = document.getElementById('venueSection');
+  const mapIcon = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>`;
+  let venueHTML = `<p class="venue-section-title">Venues</p><div class="venue-cards">`;
+  d.venues.forEach(v => {
+    const mapsURL = `https://www.google.com/maps/dir/?api=1&destination=${v.mapsQuery}`;
+    venueHTML += `
+      <div class="venue-card">
+        <p class="venue-label">${v.label}</p>
+        <p class="venue-name">${v.name}</p>
+        <p class="venue-location">${v.location}</p>
+        <a href="${mapsURL}" target="_blank" rel="noopener" class="venue-map-btn">
+          ${mapIcon} Get Directions
+        </a>
+      </div>`;
+  });
+  venueHTML += `</div>`;
+  venueSection.innerHTML = venueHTML;
+
+  // Countdown
+  const countdownSection = document.getElementById('countdownSection');
+  countdownSection.innerHTML = `
+    <p class="countdown-label">Counting Down To The Big Day</p>
+    <div class="countdown-units">
+      <div class="countdown-unit">
+        <span class="countdown-value" id="cdDays">--</span>
+        <span class="countdown-suffix">Days</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="cdHours">--</span>
+        <span class="countdown-suffix">Hours</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="cdMins">--</span>
+        <span class="countdown-suffix">Mins</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="cdSecs">--</span>
+        <span class="countdown-suffix">Secs</span>
+      </div>
+    </div>`;
+
+  // Start countdown timer
+  startCountdown();
+
   // Closing
   const closing = document.getElementById('closingSection');
   closing.innerHTML = `
@@ -1258,7 +1452,7 @@ const audioAssets = {
 const audioState = {
   musicEnabled: false,
   musicInitialized: false,
-  musicVolume: 0.02,
+  musicVolume: 0.01,
   pageTurnVolume: 0.25
 };
 
@@ -1488,6 +1682,37 @@ function initScrollHints() {
     // Initial check after a short delay (content populated dynamically)
     setTimeout(checkScroll, 500);
   });
+}
+
+// ==================== COUNTDOWN TIMER ====================
+function startCountdown() {
+  const weddingDate = new Date('2026-12-09T00:00:00');
+
+  function update() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('cdDays').textContent = '0';
+      document.getElementById('cdHours').textContent = '0';
+      document.getElementById('cdMins').textContent = '0';
+      document.getElementById('cdSecs').textContent = '0';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('cdDays').textContent = days;
+    document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
+    document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
+  }
+
+  update();
+  setInterval(update, 1000);
 }
 
 // ==================== INIT ====================
