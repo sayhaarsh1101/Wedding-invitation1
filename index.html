@@ -1146,6 +1146,25 @@ function playPageTurnSound() {
   } catch(e) {}
 }
 
+// Pause/resume music when tab loses/gains focus
+let musicWasPlayingBeforeHidden = false;
+document.addEventListener('visibilitychange', () => {
+  if (!bgMusic) return;
+  if (document.hidden) {
+    // Tab lost focus — remember state and pause
+    musicWasPlayingBeforeHidden = audioState.musicEnabled && !bgMusic.paused;
+    if (musicWasPlayingBeforeHidden) {
+      bgMusic.pause();
+    }
+  } else {
+    // Tab regained focus — resume if it was playing before
+    if (musicWasPlayingBeforeHidden && audioState.musicEnabled) {
+      bgMusic.play().catch(() => {});
+    }
+    musicWasPlayingBeforeHidden = false;
+  }
+});
+
 // Initialize audio elements early (but don't play)
 try { initAudioElements(); } catch(e) {}
 
